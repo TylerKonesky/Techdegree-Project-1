@@ -64,8 +64,6 @@ object from within the quotes array.
 
 function getRandomQuote(){
   var randomNumber = Math.floor(Math.random() * quotes.length);
-  console.log('what is the number?', randomNumber)
-  console.log('test quote', quotes[randomNumber])
   return quotes[randomNumber]
 }
 
@@ -112,7 +110,7 @@ function printQuote(){
     htmlString += '<span class="year">' + getQuote.year;
   }
   htmlString += '</p>'
-  console.log('did this work?', htmlString)
+  
   document.getElementsByTagName('body')[0].style.backgroundColor = '#' + randomColor
   document.getElementById('quote-box').innerHTML = htmlString
 
@@ -124,7 +122,11 @@ function printQuote(){
 /***
   When the "Show another quote" button is clicked, the event listener 
   below will be triggered, and it will call, or "invoke", the `printQuote` 
-  function. So do not make any changes to the line of code below this 
+  function. 
+  
+  If the button is not clicked, the quote will auto refresh every 10 seconds. 
+
+  So do not make any changes to the line of code below this 
   comment.
 ***/
 setInterval(printQuote, 10000);
