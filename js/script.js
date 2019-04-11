@@ -62,7 +62,7 @@ The random quote will then return a full random quote
 object from within the quotes array. 
 ***/
 
-function randomQuote(){
+function getRandomQuote(){
   var randomNumber = Math.floor(Math.random() * quotes.length);
   console.log('what is the number?', randomNumber)
   console.log('test quote', quotes[randomNumber])
@@ -75,11 +75,33 @@ Once that function returns an object from the array it will go through
 the object to identify the quote and the author to display on the webpage.
 
 If applicable, the function will also identify if there is a citation or
-a year and will display them accordingly to the webpage.  
+a year and will display them accordingly to the webpage. 
+
+Within the function, there is another random number generator designed
+to change the background colors each time a new quote is generated. 
 ***/
 function printQuote(){
   var htmlString = '';
-  var getQuote = randomQuote();
+  var getQuote = getRandomQuote();
+  var randomColor = '36b55c';
+  var randomNumber = Math.floor(Math.random() * quotes.length);
+  
+
+  if(randomNumber === 0){
+    randomColor = '36b55c'
+  }
+  if(randomNumber === 1){
+    randomColor = '820263'
+  }
+  if(randomNumber === 2){
+    randomColor = 'D90368'
+  }
+  if(randomNumber === 3){
+    randomColor = '2E294E'
+  }
+  if(randomNumber === 4){
+    randomColor = 'FFD400'
+  }
   
   htmlString += '<p class="quote">' + getQuote.quote + '</p>';
   htmlString += '<p class="source">' + getQuote.source;
@@ -91,6 +113,7 @@ function printQuote(){
   }
   htmlString += '</p>'
   console.log('did this work?', htmlString)
+  document.getElementsByTagName('body')[0].style.backgroundColor = '#' + randomColor
   document.getElementById('quote-box').innerHTML = htmlString
 
 //<p class="source">Patrick McKenzie<span class="citation">Twitter</span><span class="year">2016</span></p>
@@ -104,7 +127,7 @@ function printQuote(){
   function. So do not make any changes to the line of code below this 
   comment.
 ***/
-
+setInterval(printQuote, 10000);
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
 
